@@ -7,12 +7,18 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 import { useNavigation } from '@react-navigation/native';
-import { Feather } from '@expo/vector-icons';
+
 import api from '../../services/api';
-import { CategoryItem, FavoritePost, PostItem } from '../../components';
 import { getFavorite, setFavorite } from '../../services/favorite';
+
+import { CategoryItem, FavoritePost, PostItem } from '../../components';
+
+import * as Animatable from 'react-native-animatable';
+
+const AnimatedCategoryList = Animatable.createAnimatableComponent(FlatList);
 
 export function Home() {
   const [categories, setCategories] = useState([]);
@@ -62,14 +68,16 @@ export function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.name}>myStudies</Text>
+        <Animatable.Text style={styles.name} animation='fadeInLeft'>myStudies</Animatable.Text>
 
         <TouchableOpacity onPress={() => navigation.navigate('Search')}>
           <Feather name="search" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
 
-      <FlatList
+      <AnimatedCategoryList
+        animation='flipInX'
+        delay={500}
         style={styles.categories}
         horizontal={true}
         contentContainerStyle={{ paddingRight: 12 }}
@@ -151,8 +159,8 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: -40,
-    paddingTop: 10,
+    marginTop: -55,
+    paddingTop: 20,
   },
   title: {
     color: '#262330',
