@@ -2,7 +2,11 @@ import React from 'react';
 
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
-export function PostItem({ data, navigation }) {
+import { useNavigation } from '@react-navigation/native';
+
+export function PostItem({ data }) {
+  const navigation = useNavigation();
+  
   const handleDetails = () => {
     navigation.navigate('Details', { id: data?.id });
   };

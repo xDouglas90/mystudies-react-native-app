@@ -109,7 +109,7 @@ export function Home() {
           data={posts}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => <PostItem data={item} navigation={navigation} />}
+          renderItem={({ item }) => <PostItem data={item} />}
         />
       </View>
     </SafeAreaView>
