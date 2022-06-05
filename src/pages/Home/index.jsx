@@ -11,18 +11,22 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import api from '../../services/api';
-import { CategoryItem, FavoritePost } from '../../components';
+import { CategoryItem, FavoritePost, PostItem } from '../../components';
 import { getFavorite, setFavorite } from '../../services/favorite';
 
 export function Home() {
   const [categories, setCategories] = useState([]);
   const [favCategory, setFavCategory] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   const navigation = useNavigation();
 
   useEffect(() => {
     async function loadData() {
+      await getListPosts();
+
       const category = await api.get('/api/categories?populate=icon');
+
       setCategories(category.data.data);
     }
 
@@ -37,6 +41,13 @@ export function Home() {
 
     loadFavorites();
   }, []);
+
+  const getListPosts = async () => {
+    const response = await api.get(
+      '/api/posts?populate=cover&sort=createdAt:desc'
+    );
+    setPosts(response.data.data);
+  };
 
   const handleFavorite = async (id) => {
     const response = await setFavorite(id);
@@ -92,6 +103,14 @@ export function Home() {
         >
           Conteúdos recentes
         </Text>
+
+        <FlatList
+          style={styles.posts}
+          data={posts}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => <PostItem data={item} navigation={navigation} />}
+        />
       </View>
     </SafeAreaView>
   );
@@ -134,5 +153,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     marginBottom: 14,
     fontWeight: 'bold',
+  },
+  posts: {
+    flex: 1,
+    paddingHorizontal: 18,
   },
 });
