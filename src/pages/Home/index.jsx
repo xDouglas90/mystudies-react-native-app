@@ -18,6 +18,7 @@ export function Home() {
   const [categories, setCategories] = useState([]);
   const [favCategory, setFavCategory] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const navigation = useNavigation();
 
@@ -50,8 +51,12 @@ export function Home() {
   };
 
   const handleFavorite = async (id) => {
+    setLoading(true);
+
     const response = await setFavorite(id);
     setFavCategory(response);
+
+    setLoading(false);
   };
 
   return (
@@ -110,6 +115,8 @@ export function Home() {
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => String(item.id)}
           renderItem={({ item }) => <PostItem data={item} />}
+          refreshing={loading}
+          onRefresh={() => getListPosts()}
         />
       </View>
     </SafeAreaView>
