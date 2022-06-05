@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-export function CategoryItem({ data, navigation }) {
+export function CategoryItem({ data, navigation, favorite }) {
   const handleNavigate = () => navigation.navigate('CategoryPosts', { id: data.id, title: data?.attributes?.name });
 
   return (
     <View style={styles.container}>
       <TouchableOpacity
         onPress={handleNavigate}
+        onLongPress={favorite}
       >
         <View style={styles.category}>
             <Image

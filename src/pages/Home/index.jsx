@@ -11,10 +11,13 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import api from '../../services/api';
-import { CategoryItem } from '../../components';
+import { CategoryItem, FavoritePost } from '../../components';
+import { getFavorite, setFavorite } from '../../services/favorite';
 
 export function Home() {
   const [categories, setCategories] = useState([]);
+  const [favCategory, setFavCategory] = useState([]);
+
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -26,6 +29,20 @@ export function Home() {
     loadData();
   }, []);
 
+  useEffect(() => {
+    async function loadFavorites() {
+      const favorite = await getFavorite();
+      setFavorite(favorite);
+    }
+
+    loadFavorites();
+  }, []);
+
+  const handleFavorite = async (id) => {
+    const response = await setFavorite(id);
+    setFavCategory(response);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -35,6 +52,7 @@ export function Home() {
           <Feather name="search" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
+
       <FlatList
         style={styles.categories}
         horizontal={true}
@@ -43,9 +61,38 @@ export function Home() {
         data={categories}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
-          <CategoryItem data={item} navigation={navigation} />
+          <CategoryItem
+            data={item}
+            navigation={navigation}
+            favorite={() => handleFavorite(item.id)}
+          />
         )}
       />
+
+      <View style={styles.main}>
+        {favCategory.length !== 0 && (
+          <FlatList
+            style={{ marginTop: 50, maxHeight: 100, paddingStart: 18 }}
+            contentContainerStyle={{ paddingEnd: 25 }}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={favCategory}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) => (
+              <FavoritePost data={item} navigation={navigation} />
+            )}
+          />
+        )}
+
+        <Text
+          style={[
+            styles.title,
+            { marginTop: favCategory.length > 0 ? 14 : 46 },
+          ]}
+        >
+          Conteúdos recentes
+        </Text>
+      </View>
     </SafeAreaView>
   );
 }
@@ -74,5 +121,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 18,
     borderRadius: 8,
     zIndex: 9,
+  },
+  main: {
+    flex: 1,
+    backgroundColor: '#fff',
+    marginTop: -40,
+    paddingTop: 10,
+  },
+  title: {
+    color: '#262330',
+    fontSize: 22,
+    paddingHorizontal: 18,
+    marginBottom: 14,
+    fontWeight: 'bold',
   },
 });
