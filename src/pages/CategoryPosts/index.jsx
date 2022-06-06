@@ -1,12 +1,12 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+import { FlatList } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+  CategoryPostsContainer,
+  EmptyText,
+  EmptyButton,
+  EmptyButtonText,
+} from './styles';
 
 import { PostItem } from '../../components';
 
@@ -39,55 +39,22 @@ export function CategoryPosts() {
   };
 
   return (
-    <View style={styles.container}>
+    <CategoryPostsContainer>
       {postsList.length === 0 ? (
         <>
-          <Text style={styles.resultText}>
-            Essa categoria ainda não possui nenhum post.
-          </Text>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.goBack()}
-          >
-            <Text style={styles.buttonText}>Encontrar posts</Text>
-          </TouchableOpacity>
+          <EmptyText>Essa categoria ainda não possui nenhum post.</EmptyText>
+          <EmptyButton onPress={() => navigation.goBack()}>
+            <EmptyButtonText>Encontrar posts</EmptyButtonText>
+          </EmptyButton>
         </>
       ) : (
         <FlatList
-          style={styles.posts}
           data={postsList}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => String(item.id)}
           renderItem={({ item }) => <PostItem data={item} />}
         />
       )}
-    </View>
+    </CategoryPostsContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 18,
-    backgroundColor: '#fff',
-  },
-  resultText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 20,
-    textAlign: 'center',
-  },
-  button: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: '#162133',
-    borderRadius: 5,
-    width: '50%',
-    alignSelf: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    textAlign: 'center',
-  }
-});

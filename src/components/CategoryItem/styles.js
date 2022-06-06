@@ -19,6 +19,9 @@ export const Category = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 5px;
 `;
 
 export const CategoryIcon = styled.Image`

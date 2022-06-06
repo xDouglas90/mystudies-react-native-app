@@ -29,7 +29,7 @@ export function PostItem({ data }) {
       </PostItemHeader>
 
       <PostItemBody>
-        <PostItemTitle>{data.attributes.title}</PostItemTitle>
+        <PostItemTitle numberOfLines={2}>{data.attributes.title}</PostItemTitle>
         <PostItemDescription numberOfLines={2}>
           {data.attributes.description}
         </PostItemDescription>

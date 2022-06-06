@@ -9,7 +9,8 @@ export const PostItemContainer = styled.TouchableOpacity`
   border: 1px solid #efefef;
   border-radius: 4px;
   margin-bottom: 14px;
-  padding: 12px 14px;
+  padding: 12px;
+  width: 98%;
 `;
 
 export const PostItemHeader = styled.View`
@@ -29,7 +30,6 @@ export const PostItemCover = styled.Image`
   border-radius: 4px;
   height: 90px;
   width: 90px;
-  object-fit: cover;
   overflow: hidden;
 `;
 
@@ -47,6 +47,7 @@ export const PostItemTitle = styled.Text`
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 4px;
+  padding-right: 5px;
 `;
 
 export const PostItemDescription = styled.Text`

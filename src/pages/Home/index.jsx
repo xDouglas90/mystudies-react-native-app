@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import { TouchableOpacity, FlatList } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import logoImg from '../../assets/logo.png';
+
+import {
+  HomeContainer,
+  Header,
+  Logo,
+  CategoriesList,
+  Main,
+  MainTitle,
+  MainPosts,
+} from './styles';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -18,7 +22,8 @@ import { CategoryItem, FavoritePost, PostItem } from '../../components';
 
 import * as Animatable from 'react-native-animatable';
 
-const AnimatedCategoryList = Animatable.createAnimatableComponent(FlatList);
+const AnimatedCategoryList =
+  Animatable.createAnimatableComponent(CategoriesList);
 
 export function Home() {
   const [categories, setCategories] = useState([]);
@@ -53,7 +58,7 @@ export function Home() {
     const response = await api.get(
       '/api/posts?populate=cover&sort=createdAt:desc'
     );
-    setPosts(response.data.data);
+    setPosts(response.data?.data);
   };
 
   const handleFavorite = async (id) => {
@@ -66,19 +71,18 @@ export function Home() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Animatable.Text style={styles.name} animation='fadeInLeft'>myStudies</Animatable.Text>
+    <HomeContainer>
+      <Header>
+        <Logo source={logoImg} />
 
         <TouchableOpacity onPress={() => navigation.navigate('Search')}>
           <Feather name="search" size={24} color="#fff" />
         </TouchableOpacity>
-      </View>
+      </Header>
 
       <AnimatedCategoryList
-        animation='flipInX'
+        animation="flipInX"
         delay={500}
-        style={styles.categories}
         horizontal={true}
         contentContainerStyle={{ paddingRight: 12 }}
         showsHorizontalScrollIndicator={false}
@@ -93,7 +97,7 @@ export function Home() {
         )}
       />
 
-      <View style={styles.main}>
+      <Main>
         {favCategory.length !== 0 && (
           <FlatList
             style={{ marginTop: 50, maxHeight: 100, paddingStart: 18 }}
@@ -108,17 +112,9 @@ export function Home() {
           />
         )}
 
-        <Text
-          style={[
-            styles.title,
-            { marginTop: favCategory.length > 0 ? 14 : 46 },
-          ]}
-        >
-          Conteúdos recentes
-        </Text>
+        <MainTitle hasFavs={favCategory.length}>Conteúdos recentes</MainTitle>
 
-        <FlatList
-          style={styles.posts}
+        <MainPosts
           data={posts}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => String(item.id)}
@@ -126,51 +122,7 @@ export function Home() {
           refreshing={loading}
           onRefresh={() => getListPosts()}
         />
-      </View>
-    </SafeAreaView>
+      </Main>
+    </HomeContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#262330',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginHorizontal: 18,
-    marginTop: 18,
-    marginBottom: 24,
-  },
-  name: {
-    color: '#fff',
-    fontSize: 28,
-    fontWeight: 'bold',
-  },
-  categories: {
-    maxHeight: 115,
-    backgroundColor: '#efefef',
-    marginHorizontal: 18,
-    borderRadius: 8,
-    zIndex: 9,
-  },
-  main: {
-    flex: 1,
-    backgroundColor: '#fff',
-    marginTop: -55,
-    paddingTop: 20,
-  },
-  title: {
-    color: '#262330',
-    fontSize: 22,
-    paddingHorizontal: 18,
-    marginBottom: 14,
-    fontWeight: 'bold',
-  },
-  posts: {
-    flex: 1,
-    paddingHorizontal: 18,
-  },
-});
