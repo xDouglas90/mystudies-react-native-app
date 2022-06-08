@@ -1,7 +1,9 @@
-import axios from 'axios';
+import axios from 'axios'; 
+
+const { LOCAL_HOST } = process.env;
 
 const api = axios.create({
-  baseURL: 'http://192.168.1.6:1337',
+  baseURL: `http://${LOCAL_HOST}:1337`,
 });
 
 export default api;
