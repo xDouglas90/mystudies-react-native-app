@@ -1,6 +1,8 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 
+import LOCAL_HOST from '../../services/api';
+
 import { FavPostContainer, FavPostCover, FavPostTitle } from './styles';
 
 const { width: WIDTH } = Dimensions.get('window');
@@ -14,7 +16,7 @@ export function FavoritePost({ data, navigation }) {
     <FavPostContainer onPress={handleNavigate}>
       <FavPostCover
         source={{
-          uri: `http://192.168.1.6:1337${data?.attributes?.cover?.data?.attributes?.url}`,
+          uri: `http://${LOCAL_HOST}:1337${data?.attributes?.cover?.data?.attributes?.url}`,
         }}
         style={{ width: WIDTH - 35 }}
         resizeMode="cover"

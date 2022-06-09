@@ -11,6 +11,8 @@ import {
   PostItemDescription,
 } from './styles';
 
+import LOCAL_HOST from '../../services/api';
+
 export function PostItem({ data }) {
   const navigation = useNavigation();
 
@@ -23,7 +25,7 @@ export function PostItem({ data }) {
       <PostItemHeader>
         <PostItemCover
           source={{
-            uri: `http://192.168.1.6:1337${data?.attributes?.cover?.data?.attributes?.url}`,
+            uri: `http://${LOCAL_HOST}:1337${data?.attributes?.cover?.data?.attributes?.url}`,
           }}
         />
       </PostItemHeader>

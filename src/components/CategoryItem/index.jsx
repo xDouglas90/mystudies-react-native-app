@@ -1,6 +1,8 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
+import LOCAL_HOST from '../../services/api';
+
 import {
   CategoryItemContainer,
   Category,
@@ -21,7 +23,7 @@ export function CategoryItem({ data, navigation, favorite }) {
         <Category>
           <CategoryIcon
             source={{
-              uri: `http://192.168.1.6:1337${data?.attributes?.icon?.data?.attributes?.url}`,
+              uri: `http://${LOCAL_HOST}:1337${data?.attributes?.icon?.data?.attributes?.url}`,
             }}
           />
           <CategoryTitle>{data.attributes.name}</CategoryTitle>

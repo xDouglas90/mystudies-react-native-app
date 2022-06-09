@@ -15,7 +15,7 @@ import { Feather, Entypo } from '@expo/vector-icons';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-import api from '../../services/api';
+import { api, LOCAL_HOST } from '../../services/api';
 
 import { LinkWeb } from '../../components';
 
@@ -81,7 +81,7 @@ export function Details() {
     <DetailsContainer>
       <DetailsCover
         source={{
-          uri: `http://192.168.1.6:1337${post?.attributes?.cover?.data?.attributes?.url}`,
+          uri: `http://${LOCAL_HOST}:1337${post?.attributes?.cover?.data?.attributes?.url}`,
         }}
       />
 
