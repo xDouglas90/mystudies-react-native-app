@@ -3,6 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { Home, Details, CategoryPosts, Search } from './pages';
 
+import { colors } from './styles/variables';
+
 const Stack = createNativeStackNavigator();
 
 function Routes() {
@@ -20,9 +22,9 @@ function Routes() {
         component={Details}
         options={{
           title: 'Detalhes',
-          headerTintColor: '#fff',
+          headerTintColor: `${colors.white}`,
           headerStyle: {
-            backgroundColor: '#232630',
+            backgroundColor: `${colors.primary}`,
           },
         }}
       />
@@ -31,9 +33,9 @@ function Routes() {
         component={CategoryPosts}
         options={{
           title: 'Categoria',
-          headerTintColor: '#fff',
+          headerTintColor: `${colors.white}`,
           headerStyle: {
-            backgroundColor: '#232630',
+            backgroundColor: `${colors.primary}`,
           },
         }}
       />
@@ -42,9 +44,9 @@ function Routes() {
         component={Search}
         options={{
           title: 'Pesquisa',
-          headerTintColor: '#fff',
+          headerTintColor: `${colors.white}`,
           headerStyle: {
-            backgroundColor: '#232630',
+            backgroundColor: `${colors.primary}`,
           },
         }}
       />

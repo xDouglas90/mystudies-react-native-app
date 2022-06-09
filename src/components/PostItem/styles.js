@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
+import { colors } from '../../styles/variables';
+
 export const PostItemContainer = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 
-  border: 1px solid #efefef;
+  border: 1px solid ${colors.lightGray};
   border-radius: 4px;
   margin-bottom: 14px;
   padding: 12px;
@@ -43,7 +45,7 @@ export const PostItemBody = styled.View`
 `;
 
 export const PostItemTitle = styled.Text`
-  color: #262626;
+  color: ${colors.text};
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 4px;
@@ -51,7 +53,7 @@ export const PostItemTitle = styled.Text`
 `;
 
 export const PostItemDescription = styled.Text`
-  color: #262626;
+  color: ${colors.text};
   font-size: 14px;
   line-height: 18px;
 `;

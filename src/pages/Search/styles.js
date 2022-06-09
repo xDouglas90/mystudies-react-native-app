@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { colors } from '../../styles/variables';
+
 export const SearchContainer = styled.View`
   display: flex;
   flex: 1;
@@ -7,7 +9,7 @@ export const SearchContainer = styled.View`
   align-items: center;
   justify-content: flex-start;
 
-  background: #fff;
+  background: ${colors.white};
   padding: 18px;
 `;
 
@@ -25,10 +27,10 @@ export const SearchInput = styled.TextInput`
   display: flex;
   flex: 1;
 
-  background-color: #c4c4c4;
+  background-color: ${colors.gray};
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  color: #262626;
+  color: ${colors.text};
   font-size: 18px;
   height: 45px;
   padding: 8px;
@@ -41,7 +43,7 @@ export const SearchButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 
-  background-color: #c4c4c4;
+  background-color: ${colors.gray};
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   height: 45px;
@@ -50,7 +52,7 @@ export const SearchButton = styled.TouchableOpacity`
 `;
 
 export const ResultText = styled.Text`
-  color: #262626;
+  color: ${colors.text};
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { colors } from '../../styles/variables';
+
 export const CategoryItemContainer = styled.View`
   display: flex;
   flex-direction: row;
@@ -7,7 +9,7 @@ export const CategoryItemContainer = styled.View`
   align-items: center;
   justify-content: center;
 
-  background: #fff;
+  background: ${colors.white};
   border-radius: 8px;
   margin: 8px;
   margin-right: 5px;
@@ -25,14 +27,14 @@ export const Category = styled.View`
 `;
 
 export const CategoryIcon = styled.Image`
-  background-color: #f5f5f5;
+  background-color: ${colors.cultured};
   border-radius: 25px;
   height: 50px;
   width: 50px;
 `;
 
 export const CategoryTitle = styled.Text`
-  color: #262330;
+  color: ${colors.primary};
   font-size: 18px;
   font-weight: bold;
 `;

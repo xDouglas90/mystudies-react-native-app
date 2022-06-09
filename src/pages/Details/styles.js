@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { colors } from '../../styles/variables';
+
 export const DetailsContainer = styled.SafeAreaView`
   display: flex;
   flex: 1;
@@ -7,7 +9,7 @@ export const DetailsContainer = styled.SafeAreaView`
   align-items: center;
   justify-content: center;
 
-  background: #fff;
+  background: ${colors.white};
 `;
 
 export const DetailsCover = styled.Image`
@@ -16,7 +18,7 @@ export const DetailsCover = styled.Image`
 `;
 
 export const DetailsTitle = styled.Text`
-  color: #262330;
+  color: ${colors.primary};
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 14px;
@@ -30,14 +32,14 @@ export const DetailsContent = styled.ScrollView`
 `;
 
 export const ContentDescription = styled.Text`
-  color: #262626;
+  color: ${colors.text};
   font-size: 16px;
   line-height: 20px;
   text-align: justify;
 `;
 
 export const ContentSubtitle = styled.Text`
-  color: #262330;
+  color: ${colors.primary};
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -63,7 +65,7 @@ export const ContentLinkItem = styled.TouchableOpacity`
 `;
 
 export const LinkItemText = styled.Text`
-  color: #1e4687;
+  color: ${colors.blue};
   font-size: 16px;
   font-weight: bold;
   margin-left: 8px;

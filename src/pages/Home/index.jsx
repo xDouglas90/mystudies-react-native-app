@@ -12,6 +12,7 @@ import {
   MainTitle,
   MainPosts,
 } from './styles';
+import { colors } from '../../styles/variables';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -76,7 +77,7 @@ export function Home() {
         <Logo source={logoImg} />
 
         <TouchableOpacity onPress={() => navigation.navigate('Search')}>
-          <Feather name="search" size={24} color="#fff" />
+          <Feather name="search" size={24} color={colors.white} />
         </TouchableOpacity>
       </Header>
 

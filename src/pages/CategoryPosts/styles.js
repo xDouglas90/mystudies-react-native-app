@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { colors } from '../../styles/variables';
+
 export const CategoryPostsContainer = styled.View`
   display: flex;
   flex: 1;
@@ -7,7 +9,7 @@ export const CategoryPostsContainer = styled.View`
   align-items: center;
   justify-content: center;
 
-  background: #fff;
+  background: ${colors.white};
   padding: 18px;
 `;
 
@@ -20,7 +22,7 @@ export const EmptyText = styled.Text`
 
 export const EmptyButton = styled.TouchableOpacity`
   align-self: center;
-  background-color: #162133;
+  background-color: ${colors.button};
   border-radius: 5px;
   margin-top: 20px;
   padding: 10px;
@@ -28,7 +30,7 @@ export const EmptyButton = styled.TouchableOpacity`
 `;
 
 export const EmptyButtonText = styled.Text`
-  color: #fff;
+  color: ${colors.white};
   font-size: 16px;
   text-align: center;
   text-transform: uppercase;

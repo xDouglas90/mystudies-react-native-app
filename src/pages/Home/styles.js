@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
+import { colors } from '../../styles/variables';
+
 export const HomeContainer = styled.SafeAreaView`
   display: flex;
   flex: 1;
-  background-color: #262330;
+  background-color: ${colors.primary};
   padding-top: 5px;
 `;
 
@@ -21,7 +23,7 @@ export const Header = styled.View`
 `;
 
 export const CategoriesList = styled.FlatList`
-  background-color: #efefef;
+  background-color: ${colors.lightGray};
   border-radius: 8px;
   margin: 0 18px;
   max-height: 115px;
@@ -32,13 +34,13 @@ export const Main = styled.View`
   display: flex;
   flex: 1;
 
-  background-color: #fff;
+  background-color: ${colors.white};
   margin-top: -55px;
   padding-top: 20px;
 `;
 
 export const MainTitle = styled.Text`
-  color: #262330;
+  color: ${colors.primary};
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 14px;

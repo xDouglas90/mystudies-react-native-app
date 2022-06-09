@@ -12,6 +12,7 @@ import {
   LinkItemText,
 } from './styles';
 import { Feather, Entypo } from '@expo/vector-icons';
+import { colors } from '../../styles/variables';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
 
@@ -43,7 +44,7 @@ export function Details() {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={handleShare}>
-          <Entypo name="share" size={25} color="#fff" />
+          <Entypo name="share" size={25} color={colors.white} />
         </TouchableOpacity>
       ),
     });
@@ -95,7 +96,7 @@ export function Details() {
         <ContentLinks>
           {links.map((link) => (
             <ContentLinkItem key={link.id} onPress={() => handleOpenLink(link)}>
-              <Feather name="link" size={18} color="#1e4687" />
+              <Feather name="link" size={18} color={colors.blue} />
               <LinkItemText>{link.name}</LinkItemText>
             </ContentLinkItem>
           ))}

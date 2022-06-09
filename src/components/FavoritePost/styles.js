@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { colors } from '../../styles/variables';
+
 export const FavPostContainer = styled.TouchableOpacity`
   display: flex;
   flex: 1;
@@ -9,16 +11,16 @@ export const FavPostContainer = styled.TouchableOpacity`
 export const FavPostCover = styled.ImageBackground`
   display: flex;
   justify-content: flex-end;
-  background: #232630;
+  background: ${colors.primary};
   border-radius: 6px;
   height: 100px;
 `;
 
 export const FavPostTitle = styled.Text`
-  color: #fff;
+  color: ${colors.white};
   font-size: 17px;
   font-weight: bold;
   text-align: center;
   padding: 8px 12px;
-  text-shadow: 2px 1px 8px #121212;
+  text-shadow: 2px 1px 8px ${colors.shadow};
 `;
